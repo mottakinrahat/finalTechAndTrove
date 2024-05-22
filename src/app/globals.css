@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.poppins {
+  font-family: var(--font-poppins);
+}
+.montserrat {
+  font-family: var(--font-montserrat);
+}
