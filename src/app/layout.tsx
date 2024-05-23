@@ -32,9 +32,9 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${montserrat.className},${poppins.className}`}>
           <AppRouterCacheProvider>
-            <Navbar />
+           
             <div>{children}</div>
-            <Footer />
+           
           </AppRouterCacheProvider>
         </body>
       </html>

@@ -155,7 +155,9 @@ const Navbar = () => {
               <HiOutlineSun size={30} />
             )}
           </Button>
-          <Button style={{ color: "white" }}>Sign In</Button>
+          <Link href="/login">
+            <Button style={{ color: "white" }}>Sign In</Button>
+          </Link>
         </Box>
       </Stack>
       <Box
@@ -306,7 +308,9 @@ const Navbar = () => {
                     <HiOutlineSun size={30} />
                   )}
                 </Button>
-                <Button variant="text">Sign In</Button>
+                <Link href="/login">
+                  <Button variant="text">Sign In</Button>
+                </Link>
               </Stack>
             </Box>
           )}
