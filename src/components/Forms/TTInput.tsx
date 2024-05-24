@@ -5,9 +5,9 @@ import { Controller, useFormContext } from "react-hook-form";
 type IInputProps = {
   name: string;
   label?: string;
-  type: string;
-  fullWidth: boolean;
-  size: "small" | "medium";
+  type?: string;
+  fullWidth?: boolean;
+  size?: "small" | "medium";
 };
 const TTInput = ({
   name,
@@ -26,6 +26,7 @@ const TTInput = ({
           {...field}
           label={label}
           type={type}
+          size={size}
           variant="outlined"
           fullWidth={fullWidth}
         />

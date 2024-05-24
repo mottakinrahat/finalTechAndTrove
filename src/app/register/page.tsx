@@ -1,3 +1,4 @@
+"use client";
 import {
   Box,
   Button,
@@ -7,12 +8,23 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import Image from "next/image";
 import React from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import Link from "next/link";
+import TTForms from "@/components/Forms/TTForms";
+import TTInput from "@/components/Forms/TTInput";
+
+type Inputs = {
+  username: string;
+  email: string;
+  password: string;
+  contactNo: string;
+};
 
 const RegisterPage = () => {
+  const handleSignUp = async (data: FieldValues) => console.log(data);
   return (
     <Container sx={{ padding: "50px" }}>
       <Stack sx={{ justifyContent: "center", alignItems: "center" }}>
@@ -46,58 +58,49 @@ const RegisterPage = () => {
               </Typography>
             </Box>
           </Stack>
-          <Grid container spacing={2}>
-            <Grid item md={12}>
-              <TextField
-                id="outlined-basic"
-                label="Your Username"
-                variant="outlined"
-                size="small"
-                fullWidth={true}
-              ></TextField>
+          <TTForms onSubmit={handleSignUp}>
+            <Grid sx={{ my: 4 }} container spacing={2}>
+              <Grid item md={6}>
+                <TTInput
+                  label="Your Username"
+                  name="username"
+                  type="text"
+                  fullWidth={true}
+                ></TTInput>
+              </Grid>
+              <Grid item md={6}>
+                <TTInput
+                  label="Your Email"
+                  type="email"
+                  fullWidth={true}
+                  name="email"
+                ></TTInput>
+              </Grid>
+              <Grid item md={6}>
+                <TTInput
+                  label="Your Password"
+                  type="password"
+                  fullWidth={true}
+                  name="password"
+                ></TTInput>
+              </Grid>
+              <Grid item md={6}>
+                <TTInput
+                  label="Your Contact No"
+                  type="number"
+                  fullWidth={true}
+                  name="contactNo"
+                ></TTInput>
+              </Grid>
             </Grid>
-            <Grid item md={6}>
-              <TextField
-                id="outlined-basic"
-                label="Your Email"
-                variant="outlined"
-                size="small"
-                fullWidth={true}
-              ></TextField>
-            </Grid>
-            <Grid item md={6}>
-              <TextField
-                id="outlined-basic"
-                label="Your Password"
-                variant="outlined"
-                size="small"
-                fullWidth={true}
-              ></TextField>
-            </Grid>
-            <Grid item md={6}>
-              <TextField
-                id="outlined-basic"
-                label="Your Contact No"
-                variant="outlined"
-                size="small"
-                fullWidth={true}
-              ></TextField>
-            </Grid>
-            <Grid item md={6}>
-              <TextField
-                id="outlined-basic"
-                label="Your Address"
-                variant="outlined"
-                size="small"
-                fullWidth={true}
-              ></TextField>
-            </Grid>
-          </Grid>
-          <Box sx={{ marginTop: 4 }}>
-            <Button fullWidth={true}>Sign Up</Button>
-          </Box>
+            <Box sx={{ marginTop: 4 }}>
+              <Button type="submit" fullWidth={true}>
+                Sign Up
+              </Button>
+            </Box>
+          </TTForms>
           <Box>
-            <Typography>
+            <Typography sx={{ my: 2 }}>
               Already have an account?{" "}
               <Link style={{ color: "blue" }} href="/login">
                 Sign in

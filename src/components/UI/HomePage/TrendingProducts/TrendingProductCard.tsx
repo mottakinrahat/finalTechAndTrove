@@ -23,7 +23,8 @@ const buttons = [
     <ShopIcon />
   </Button>,
 ];
-const TrendingProductCard = () => {
+const TrendingProductCard = ({ watch }) => {
+  console.log(watch);
   const [value, setValue] = React.useState<number | null>(2);
   return (
     <Container>
