@@ -20,5 +20,4 @@ const smartWatchApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetSmartWatchQuery, useCreateSmartWatchMutation } =
-  smartWatchApi;
+export const { useGetSmartWatchQuery, useCreateSmartWatchMutation }=smartWatchApi;

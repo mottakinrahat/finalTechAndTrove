@@ -1,24 +1,34 @@
+"use client";
 import React from "react";
 import TrendingProductCard from "./TrendingProductCard";
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { useGetSmartWatchQuery } from "@/redux/api/smartWatchApi";
 import LoadingRound from "@/Loading/LoadingRound";
+import Title from "../../Title/Title";
 
 const TrendingProducts = () => {
-  const { data, isLoading } = useGetSmartWatchQuery(undefined);
+  const { data, isLoading, error } = useGetSmartWatchQuery(null);
+
   if (isLoading) {
     return (
-      <>
+      <div>
         {" "}
         <LoadingRound />
-      </>
+      </div>
     );
   }
+
   return (
     <Container>
+      <Box sx={{ marginTop: "80px" }}>
+        <Title
+          upperText="GO TO DAILY DEALS"
+          heading="TRENDING PRODUCTS"
+        ></Title>
+      </Box>
       <div>
-        {data.map((watch: any, index: number) => (
-          <TrendingProductCard key={watch._id} watch={watch} />
+        {data?.data.map((product: any) => (
+          <TrendingProductCard key={product._id} product={product} />
         ))}
       </div>
     </Container>

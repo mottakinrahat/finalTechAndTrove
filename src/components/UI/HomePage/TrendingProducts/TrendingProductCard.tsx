@@ -23,18 +23,13 @@ const buttons = [
     <ShopIcon />
   </Button>,
 ];
-const TrendingProductCard = ({ watch }) => {
+const TrendingProductCard = (watch) => {
   console.log(watch);
   const [value, setValue] = React.useState<number | null>(2);
   return (
     <Container>
       <div>
-        <Box sx={{ marginTop: "80px" }}>
-          <Title
-            upperText="GO TO DAILY DEALS"
-            heading="TRENDING PRODUCTS"
-          ></Title>
-        </Box>
+        
 
         <Box>
           <Card
@@ -118,7 +113,7 @@ const TrendingProductCard = ({ watch }) => {
 
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Web-Cam
+                {watch?.name}
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
