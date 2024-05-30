@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import TrendingProductCard from "./TrendingProductCard";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Stack } from "@mui/material";
 import { useGetSmartWatchQuery } from "@/redux/api/smartWatchApi";
 import LoadingRound from "@/Loading/LoadingRound";
 import Title from "../../Title/Title";
@@ -26,11 +26,11 @@ const TrendingProducts = () => {
           heading="TRENDING PRODUCTS"
         ></Title>
       </Box>
-      <div>
+      <Stack direction="row">
         {data?.data.map((product: any) => (
           <TrendingProductCard key={product._id} product={product} />
         ))}
-      </div>
+      </Stack>
     </Container>
   );
 };
