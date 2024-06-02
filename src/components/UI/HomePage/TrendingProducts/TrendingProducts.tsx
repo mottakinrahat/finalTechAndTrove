@@ -26,7 +26,13 @@ const TrendingProducts = () => {
           heading="TRENDING PRODUCTS"
         ></Title>
       </Box>
-      <Stack direction="row">
+      <Stack
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        flexWrap={{ xs: "wrap", md: "nowrap" }}
+        gap={1}
+      >
         {data?.data.map((product: any) => (
           <TrendingProductCard key={product._id} product={product} />
         ))}

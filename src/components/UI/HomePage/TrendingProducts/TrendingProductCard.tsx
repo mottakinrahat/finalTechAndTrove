@@ -24,13 +24,13 @@ const buttons = [
   </Button>,
 ];
 const TrendingProductCard = (watch) => {
-  console.log(watch);
   const [value, setValue] = React.useState<number | null>(2);
+  const { productImage, name, stock, flashSale, price, regularPrice } =
+    watch?.product;
+
   return (
     <Container>
       <div>
-        
-
         <Box>
           <Card
             sx={{
@@ -53,7 +53,7 @@ const TrendingProductCard = (watch) => {
               }}
             >
               <Image
-                src="https://m.media-amazon.com/images/I/61-K2lXmHQL._AC_SL1500_.jpg"
+                src={productImage[0].images}
                 height={200}
                 width={200}
                 alt="alter"
@@ -61,19 +61,35 @@ const TrendingProductCard = (watch) => {
             </Box>
 
             <Box sx={{ padding: "8px 16px" }}>
-              <Typography
-                variant="body2"
-                color="black"
-                sx={{
-                  marginTop: "4px",
-                  backgroundColor: "primary.main",
-                  width: "60px",
-                  padding: "2px",
-                  borderRadius: "6px",
-                }}
-              >
-                In stock
-              </Typography>
+              {stock ? (
+                <Typography
+                  variant="body2"
+                  color="black"
+                  sx={{
+                    marginTop: "4px",
+                    backgroundColor: "primary.main",
+                    width: "60px",
+                    padding: "2px",
+                    borderRadius: "6px",
+                  }}
+                >
+                  In stock
+                </Typography>
+              ) : (
+                <Typography
+                  variant="body2"
+                  color="black"
+                  sx={{
+                    marginTop: "4px",
+                    backgroundColor: "primary.main",
+                    width: "60px",
+                    padding: "2px",
+                    borderRadius: "6px",
+                  }}
+                >
+                  out of stock
+                </Typography>
+              )}
 
               <Box
                 sx={{
@@ -84,14 +100,14 @@ const TrendingProductCard = (watch) => {
                 }}
               >
                 <Typography variant="h6" component="div">
-                  ৳ 3399
+                  ৳ {price}
                 </Typography>
                 <Typography
                   variant="body2"
                   color="text.secondary"
                   sx={{ textDecoration: "line-through" }}
                 >
-                  4800
+                  {regularPrice}
                 </Typography>
               </Box>
 
