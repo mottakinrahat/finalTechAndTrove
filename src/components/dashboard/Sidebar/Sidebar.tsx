@@ -16,7 +16,17 @@ const Sidebar = () => {
       <Toolbar />
       <Divider />
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {[
+          "Smart Watch",
+          "Earbuds",
+          "headphone",
+          "Earphone",
+          "Mouse",
+          "keyboard",
+          "Bluetooth Speaker",
+          "webcam",
+          "security Camera",
+        ].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -29,7 +39,7 @@ const Sidebar = () => {
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {["Order"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>

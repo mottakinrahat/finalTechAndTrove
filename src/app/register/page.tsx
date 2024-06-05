@@ -1,21 +1,16 @@
 "use client";
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import { FieldValues } from "react-hook-form";
 import Image from "next/image";
 import React from "react";
 import GoogleIcon from "@mui/icons-material/Google";
 import Link from "next/link";
 import TTForms from "@/components/Forms/TTForms";
 import TTInput from "@/components/Forms/TTInput";
-
+import { registerUser } from "@/services/actions/registerUser";
+import { modifyPayloadT } from "@/utils/modifyPayloadT";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 type Inputs = {
   username: string;
   email: string;
@@ -24,7 +19,45 @@ type Inputs = {
 };
 
 const RegisterPage = () => {
-  const handleSignUp = async (data: FieldValues) => console.log(data);
+  const router = useRouter();
+  const handleSignUp = async (values: FieldValues) => {
+    const userData = {
+      username: values.username,
+      email: values.email,
+      password: values.password,
+      contactNo: parseInt(values.contactNo),
+    };
+    const data = modifyPayloadT(userData);
+
+    try {
+      const res = await registerUser(data);
+      console.log(res);
+      if (res?.success) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User has been registered",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        router.push("/login");
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: res.errorMessage,
+          footer: "",
+        });
+      }
+    } catch (err: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: err.message,
+        footer: "",
+      });
+    }
+  };
   return (
     <Container sx={{ padding: "50px" }}>
       <Stack sx={{ justifyContent: "center", alignItems: "center" }}>

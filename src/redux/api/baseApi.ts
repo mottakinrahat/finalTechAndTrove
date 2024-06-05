@@ -8,5 +8,12 @@ export const baseApi = createApi({
   }),
 
   endpoints: () => ({}),
-  tagTypes: ["properties", "testimonial", "smartwatch"],
+  tagTypes: [
+    "properties",
+    "testimonial",
+    "smartwatch",
+    "products",
+    "category",
+    "user",
+  ],
 });

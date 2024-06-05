@@ -25,19 +25,28 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "secondary.main",
+        backgroundColor: "black",
+        color: "white",
         padding: "64px",
       }}
     >
       <Grid container spacing={2}>
         <Grid item xs={6} md={3}>
           <Stack direction="column" spacing={2}>
-            <Image
-              src="https://i.ibb.co/HhbnBms/Hertiage-Nest-Final-LOGO-1-1.png"
-              height={40}
-              width={40}
-              alt="alternative"
-            />
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Image
+                src="https://i.ibb.co/F5WvHLr/TNT-Logo-9.png"
+                height={100}
+                width={100}
+                alt="alternative"
+              ></Image>
+              <Image
+                src="https://i.ibb.co/qDMb5yb/whitebg.png"
+                height={150}
+                width={150}
+                alt="alternative"
+              ></Image>
+            </Box>
             <Typography maxWidth="320px">
               Design amazing digital experiences that create more happy in the
               world.

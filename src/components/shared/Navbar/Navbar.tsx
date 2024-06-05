@@ -250,7 +250,10 @@ const Navbar = () => {
                   padding: "8px",
                 }}
               >
-                <DashboardIcon fontSize="medium" />
+                <Link href="dashboard/admin">
+                  {" "}
+                  <DashboardIcon fontSize="medium" />
+                </Link>
               </Typography>
             </Stack>
             <IconButton

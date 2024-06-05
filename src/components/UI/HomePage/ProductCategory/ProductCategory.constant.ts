@@ -2,7 +2,7 @@ export const productCategory: any = [
   {
     productImage: "https://i.ibb.co/9Nhpkkz/pngwing-com-7.png",
     title: "Smartwatch",
-    route: "products",
+    route: "smartwatch",
   },
   {
     productImage: "https://i.ibb.co/b53B5PK/Bluetooth-Speaker.png",
