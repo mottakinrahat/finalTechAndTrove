@@ -4,16 +4,16 @@ import DashboardTable from "@/components/dashboard/DashboardTable/DashboardTable
 import { useGetSmartWatchQuery } from "@/redux/api/smartWatchApi";
 import React, { useState } from "react";
 
-const SmartWatchTable: React.FC = () => {
+const EarbudsPage: React.FC = () => {
   const { data, isLoading } = useGetSmartWatchQuery(null);
   if (isLoading) {
     <LoadingRound />;
   }
   return (
     <div>
-      <DashboardTable watchData={data?.data} dataName="watchData" />
+      <DashboardTable watchData={data?.data}  />
     </div>
   );
 };
 
-export default SmartWatchTable;
+export default EarbudsPage;

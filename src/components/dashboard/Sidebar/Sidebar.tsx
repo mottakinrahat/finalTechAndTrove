@@ -18,10 +18,10 @@ const Sidebar = () => {
       <Divider />
       <List>
         {[
-          { text: "Smart Watch", href: "/smart-watch" },
-          { text: "Earbuds", href: "/earbuds" },
-          { text: "Headphone", href: "/headphone" },
-          { text: "Earphone", href: "/earphone" },
+          { text: "Smart Watch", href: "/dashboard/admin/smart-watch" },
+          { text: "Earbuds", href: "/dashboard/admin/earbuds" },
+          { text: "Headphone", href: "/dashboard/admin/headphone" },
+          { text: "Earphone", href: "/dashboard/admin/earphone" },
           { text: "Mouse", href: "/mouse" },
           { text: "Keyboard", href: "/keyboard" },
           { text: "Bluetooth Speaker", href: "/bluetooth-speaker" },
