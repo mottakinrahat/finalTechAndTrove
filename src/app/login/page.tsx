@@ -19,6 +19,7 @@ import { modifyPayloadT } from "@/utils/modifyPayloadT";
 import { userLogin } from "@/services/actions/userLogin";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { storeUserInfo } from "@/services/auth.services";
 
 type Inputs = {
   username: string;
@@ -37,6 +38,10 @@ const LoginPage = () => {
     const data = modifyPayloadT(values);
     try {
       const res = await userLogin(data);
+      console.log(res);
+      if (res?.data?.accessToken) {
+        storeUserInfo(res?.data?.accessToken);
+      }
       if (res?.success) {
         Swal.fire({
           position: "center",
