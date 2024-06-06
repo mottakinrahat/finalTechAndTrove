@@ -55,8 +55,8 @@ export default function DashboardDrawer({
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+          <Typography fontSize={20} color="white" noWrap component="div">
+            Hi MD. Mottakin Rahat, Wellcome to Tech and Trove Dashboard
           </Typography>
         </Toolbar>
       </AppBar>

@@ -39,8 +39,8 @@ const LoginPage = () => {
     try {
       const res = await userLogin(data);
       console.log(res);
-      if (res?.data?.accessToken) {
-        storeUserInfo(res?.data?.accessToken);
+      if (res?.token) {
+        storeUserInfo(res?.token);
       }
       if (res?.success) {
         Swal.fire({
