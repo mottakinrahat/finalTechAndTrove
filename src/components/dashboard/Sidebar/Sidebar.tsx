@@ -10,6 +10,7 @@ import Divider from "@mui/material/Divider";
 import MailIcon from "@mui/icons-material/Mail";
 import Image from "next/image";
 import Link from "next/link";
+
 const Sidebar = () => {
   const drawer = (
     <div>
@@ -17,59 +18,65 @@ const Sidebar = () => {
       <Divider />
       <List>
         {[
-          "Smart Watch",
-          "Earbuds",
-          "headphone",
-          "Earphone",
-          "Mouse",
-          "keyboard",
-          "Bluetooth Speaker",
-          "webcam",
-          "security Camera",
-        ].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
+          { text: "Smart Watch", href: "/smart-watch" },
+          { text: "Earbuds", href: "/earbuds" },
+          { text: "Headphone", href: "/headphone" },
+          { text: "Earphone", href: "/earphone" },
+          { text: "Mouse", href: "/mouse" },
+          { text: "Keyboard", href: "/keyboard" },
+          { text: "Bluetooth Speaker", href: "/bluetooth-speaker" },
+          { text: "Webcam", href: "/webcam" },
+          { text: "Security Camera", href: "/security-camera" },
+        ].map((item, index) => (
+          <ListItem key={item.text} disablePadding>
+            <Link href={item.href} passHref>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={item.text} />
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
       <Divider />
       <List>
-        {["Order"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
+        {[
+          { text: "Order", href: "/order" },
+        ].map((item, index) => (
+          <ListItem key={item.text} disablePadding>
+            <Link href={item.href} passHref>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={item.text} />
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
     </div>
   );
+
   return (
     <Box>
       <Stack direction="row" justifyContent="center" alignItems="center" pt={6}>
-        {" "}
         <Link href="/" style={{ cursor: "pointer" }}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Image
               src="https://i.ibb.co/F5WvHLr/TNT-Logo-9.png"
               height={80}
               width={80}
-              alt="alternative"
-            ></Image>
+              alt="TNT Logo"
+            />
             <Image
               src="https://i.ibb.co/qDMb5yb/whitebg.png"
               height={100}
               width={100}
-              alt="alternative"
-            ></Image>
+              alt="White Background"
+            />
           </Box>
         </Link>
       </Stack>
