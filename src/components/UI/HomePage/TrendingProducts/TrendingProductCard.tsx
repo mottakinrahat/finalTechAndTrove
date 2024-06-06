@@ -23,7 +23,7 @@ const buttons = [
     <ShopIcon />
   </Button>,
 ];
-const TrendingProductCard = (watch) => {
+const TrendingProductCard = (watch: any) => {
   const [value, setValue] = React.useState<number | null>(2);
   const { productImage, name, stock, flashSale, price, regularPrice } =
     watch?.product;

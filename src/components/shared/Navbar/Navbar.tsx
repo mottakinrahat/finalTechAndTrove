@@ -2,7 +2,7 @@
 import { Box, Button, Stack, Typography, IconButton } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -23,6 +23,7 @@ import Lottie from "lottie-react";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import callLottie from "@/assets/lottie/callLottie.json";
+import { getUserInfo } from "@/services/auth.services";
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
@@ -32,6 +33,17 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   },
 }));
 const Navbar = () => {
+  const [date, setDate] = useState(new Date().toLocaleDateString());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setDate(new Date().toLocaleDateString());
+    }, 1000 * 60 * 60 * 24);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const user = getUserInfo();
   const dispatch = useAppDispatch();
   const darkMode = useAppSelector(toogleThemes);
   const handleToggleThemes = () => {
@@ -69,7 +81,7 @@ const Navbar = () => {
             <Box sx={{ color: "primary.main" }}>
               <CalendarMonthIcon />
             </Box>
-            <Typography>May 18,2024</Typography>
+            <Typography>{date}</Typography>
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: "6px" }}>
@@ -142,7 +154,13 @@ const Navbar = () => {
             <Typography color="black">+8801886807417</Typography>
           </Box>
         </Box>
-        <Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           {" "}
           <Button
             variant="text"
@@ -155,9 +173,15 @@ const Navbar = () => {
               <HiOutlineSun size={30} />
             )}
           </Button>
-          <Link href="/login">
-            <Button style={{ color: "white" }}>Sign In</Button>
-          </Link>
+          <Box>
+            {user ? (
+              <Button style={{ color: "white" }}>Sign Out</Button>
+            ) : (
+              <Link href="/login">
+                <Button style={{ color: "white" }}>Sign In</Button>
+              </Link>
+            )}
+          </Box>
         </Box>
       </Stack>
       <Box

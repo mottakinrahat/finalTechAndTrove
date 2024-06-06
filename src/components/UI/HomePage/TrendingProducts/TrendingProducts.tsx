@@ -30,7 +30,7 @@ const TrendingProducts = () => {
         direction="row"
         justifyContent="center"
         alignItems="center"
-        flexWrap={{ xs: "wrap", md: "nowrap" }}
+        flexWrap={{ xs: "wrap", md: "wrap" }}
         gap={1}
       >
         {data?.data.map((product: any) => (

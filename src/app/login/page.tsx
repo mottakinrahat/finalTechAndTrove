@@ -38,9 +38,8 @@ const LoginPage = () => {
     const data = modifyPayloadT(values);
     try {
       const res = await userLogin(data);
-      console.log(res);
-      if (res?.token) {
-        storeUserInfo(res?.token);
+      if (res?.data?.token) {
+        storeUserInfo(res?.data?.token);
       }
       if (res?.success) {
         Swal.fire({
@@ -50,7 +49,7 @@ const LoginPage = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        router.push("/");
+        // router.push("/");
       } else {
         Swal.fire({
           position: "center",
