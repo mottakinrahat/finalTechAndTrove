@@ -49,7 +49,7 @@ const LoginPage = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        // router.push("/");
+        router.push("/");
       } else {
         Swal.fire({
           position: "center",

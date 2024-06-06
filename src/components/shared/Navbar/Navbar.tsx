@@ -23,7 +23,7 @@ import Lottie from "lottie-react";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import callLottie from "@/assets/lottie/callLottie.json";
-import { getUserInfo } from "@/services/auth.services";
+import { getUserInfo, removeUser } from "@/services/auth.services";
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
@@ -43,18 +43,21 @@ const Navbar = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const user = getUserInfo();
+  const userInfo = getUserInfo();
+  const [user, setUser] = useState(userInfo);
   const dispatch = useAppDispatch();
   const darkMode = useAppSelector(toogleThemes);
   const handleToggleThemes = () => {
     dispatch(toogleTheme());
   };
   const [showDropdown, setShowDropdown] = useState(false);
-
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
-
+  const handleSignOut = () => {
+    removeUser();
+    setUser(null);
+  };
   return (
     <Box>
       <Box bgcolor="black" paddingX={10} color="white">
@@ -175,7 +178,9 @@ const Navbar = () => {
           </Button>
           <Box>
             {user ? (
-              <Button style={{ color: "white" }}>Sign Out</Button>
+              <Button onClick={handleSignOut} style={{ color: "white" }}>
+                Sign Out
+              </Button>
             ) : (
               <Link href="/login">
                 <Button style={{ color: "white" }}>Sign In</Button>
@@ -258,27 +263,31 @@ const Navbar = () => {
                   </StyledBadge>
                 </IconButton>
               </Typography>
-              <Typography
-                sx={{
-                  backgroundColor: "#E7E7E7",
-                  borderRadius: "50px",
-                  padding: "8px",
-                }}
-              >
-                <AccountCircleIcon fontSize="medium" />
-              </Typography>
-              <Typography
-                sx={{
-                  backgroundColor: "#E7E7E7",
-                  borderRadius: "50px",
-                  padding: "8px",
-                }}
-              >
-                <Link href="dashboard/admin">
-                  {" "}
-                  <DashboardIcon fontSize="medium" />
-                </Link>
-              </Typography>
+              {user && (
+                <Typography
+                  sx={{
+                    backgroundColor: "#E7E7E7",
+                    borderRadius: "50px",
+                    padding: "8px",
+                  }}
+                >
+                  <AccountCircleIcon fontSize="medium" />
+                </Typography>
+              )}
+              {user?.role === "admin" && (
+                <Typography
+                  sx={{
+                    backgroundColor: "#E7E7E7",
+                    borderRadius: "50px",
+                    padding: "8px",
+                  }}
+                >
+                  <Link href="dashboard/admin">
+                    {" "}
+                    <DashboardIcon fontSize="medium" />
+                  </Link>
+                </Typography>
+              )}
             </Stack>
             <IconButton
               onClick={toggleDropdown}

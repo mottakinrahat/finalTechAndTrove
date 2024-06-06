@@ -16,7 +16,6 @@ const ProductCategoryPage = ({ params }: any) => {
       </>
     );
   }
-  console.log(data?.data);
   return (
     <Container>
       <Box sx={{ marginTop: "80px" }}>
@@ -29,7 +28,7 @@ const ProductCategoryPage = ({ params }: any) => {
         direction="row"
         justifyContent="center"
         alignItems="center"
-        flexWrap={{ xs: "wrap", md: "nowrap" }}
+        flexWrap={{ xs: "wrap", md: "wrap" }}
         gap={1}
       >
         {data?.data.map((product: any) => (
