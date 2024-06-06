@@ -11,7 +11,7 @@ const SmartWatchTable: React.FC = () => {
   }
   return (
     <div>
-      <DashboardTable watchData={data?.data} dataName="watchData" />
+      <DashboardTable watchData={data?.data} />
     </div>
   );
 };

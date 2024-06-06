@@ -5,10 +5,9 @@ import {
   Container,
   Grid,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import Image from "next/image";
 import React from "react";
 import GoogleIcon from "@mui/icons-material/Google";
@@ -21,7 +20,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { storeUserInfo } from "@/services/auth.services";
 
-type Inputs = {
+export type Inputs = {
   username: string;
   email: string;
   password: string;
@@ -31,10 +30,6 @@ type Inputs = {
 const LoginPage = () => {
   const router = useRouter();
   const handleSignUp = async (values: FieldValues) => {
-    const userLoginInfo = {
-      email: values?.email,
-      password: values?.password,
-    };
     const data = modifyPayloadT(values);
     try {
       const res = await userLogin(data);
@@ -129,7 +124,7 @@ const LoginPage = () => {
           </TTForms>
           <Box>
             <Typography sx={{ my: 2 }}>
-              Don't have an account?{" "}
+              Dont have an account?
               <Link style={{ color: "blue" }} href="/register">
                 Sign up
               </Link>

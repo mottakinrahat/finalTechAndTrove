@@ -64,7 +64,7 @@ const HeroSection = () => {
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
 
-  const onAutoplayTimeLeft = (s, time, progress) => {
+  const onAutoplayTimeLeft = (s: number, time: number, progress: number) => {
     if (progressCircle.current) {
       progressCircle.current.style.setProperty("--progress", 1 - progress);
     }

@@ -10,19 +10,9 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "./css/sliderStyle.css";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-import { useGetPropertiesQuery } from "@/redux/api/propertiesApi";
 import LoadingRound from "@/Loading/LoadingRound";
 const ImageSlider = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const { data, isLoading } = useGetPropertiesQuery(undefined);
-
-  if (isLoading) {
-    return (
-      <div>
-        <LoadingRound />
-      </div>
-    );
-  }
   return (
     <>
       <Swiper
@@ -38,11 +28,9 @@ const ImageSlider = () => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2"
       >
-        {data?.data.map((image: any) => (
-          <SwiperSlide key={image?._id}>
-            <img src={image?.propertyImage} />
-          </SwiperSlide>
-        ))}
+        <SwiperSlide>
+          <img src="" />
+        </SwiperSlide>
       </Swiper>
       <Swiper
         spaceBetween={10}
@@ -52,11 +40,9 @@ const ImageSlider = () => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
-        {data?.data.map((image: any) => (
-          <SwiperSlide key={image?._id}>
-            <img src={image?.propertyImage} />
-          </SwiperSlide>
-        ))}
+        <SwiperSlide key={image?._id}>
+          <img src="" />
+        </SwiperSlide>
       </Swiper>
     </>
   );
