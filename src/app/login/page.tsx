@@ -18,6 +18,7 @@ import TTInput from "@/components/Forms/TTInput";
 import { modifyPayloadT } from "@/utils/modifyPayloadT";
 import { userLogin } from "@/services/actions/userLogin";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 type Inputs = {
   username: string;
@@ -27,6 +28,7 @@ type Inputs = {
 };
 
 const LoginPage = () => {
+  const router = useRouter();
   const handleSignUp = async (values: FieldValues) => {
     const userLoginInfo = {
       email: values?.email,
@@ -43,6 +45,7 @@ const LoginPage = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        router.push("/");
       } else {
         Swal.fire({
           position: "center",
