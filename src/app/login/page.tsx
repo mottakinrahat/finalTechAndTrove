@@ -15,6 +15,9 @@ import GoogleIcon from "@mui/icons-material/Google";
 import Link from "next/link";
 import TTForms from "@/components/Forms/TTForms";
 import TTInput from "@/components/Forms/TTInput";
+import { modifyPayloadT } from "@/utils/modifyPayloadT";
+import { userLogin } from "@/services/actions/userLogin";
+import Swal from "sweetalert2";
 
 type Inputs = {
   username: string;
@@ -24,7 +27,41 @@ type Inputs = {
 };
 
 const LoginPage = () => {
-  const handleSignUp = async (data: FieldValues) => console.log(data);
+  const handleSignUp = async (values: FieldValues) => {
+    const userLoginInfo = {
+      email: values?.email,
+      password: values?.password,
+    };
+    const data = modifyPayloadT(values);
+    try {
+      const res = await userLogin(data);
+      if (res?.success) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: res.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    } catch (err: any) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: err?.message,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
   return (
     <Container sx={{ padding: "50px" }}>
       <Stack sx={{ justifyContent: "center", alignItems: "center" }}>
