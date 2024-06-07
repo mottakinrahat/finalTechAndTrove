@@ -26,12 +26,6 @@ const DetailsData = ({ watches }: any) => {
     productImage,
     price,
     regularPrice,
-    color,
-    flashSale,
-    discount,
-    warranty,
-    reviews,
-    category,
     specification,
     features,
     brand,
@@ -248,7 +242,7 @@ const DetailsData = ({ watches }: any) => {
                 Specifications
               </Typography>
               <TableContainer component={Paper}>
-                {specification?.map((specific, index) => (
+                {specification?.map((specific: any, index: number) => (
                   <Table key={specific?._id}>
                     <TableHead>
                       <TableRow>

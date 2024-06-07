@@ -1,26 +1,35 @@
 "use client";
-import React from "react";
-import {
-  Box,
-  Paper,
-  Typography,
-  Button,
-  Grid,
-  TextField,
-  Container,
-} from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Box, Paper, Typography, Button, Grid, Container } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 
 import { useGetCartQuery } from "@/redux/api/cartApi";
+import QuantityInput from "@/components/QuantityInput/QuantityInput";
 
 const CartPage: React.FC = () => {
   const { data, isLoading } = useGetCartQuery(null);
+  const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
 
-  const handleDelete = (productId: string) => {};
+  useEffect(() => {
+    if (data) {
+      const initialQuantities = data.data.reduce((acc: any, product: any) => {
+        acc[product.productId._id] = product.quantity || 1;
+        return acc;
+      }, {});
+      setQuantities(initialQuantities);
+    }
+  }, [data]);
 
-  const handleQuantityChange = (productId: string, quantity: number) => {};
+  const handleDelete = (productId: string) => {
+    // Your delete logic here
+  };
+
+  const handleQuantityChange = (productId: string, newQuantity: number) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [productId]: newQuantity,
+    }));
+  };
 
   if (isLoading) {
     return <>Loading...</>;
@@ -28,7 +37,7 @@ const CartPage: React.FC = () => {
 
   return (
     <Container>
-      <Box sx={{ marginTop: "60px" }}>
+      <Box sx={{ margin: "60px", paddingTop: "40px" }}>
         {data?.data?.map((product: any, index: number) => (
           <Paper
             key={product?.productId?._id}
@@ -39,31 +48,13 @@ const CartPage: React.FC = () => {
                 <Typography>{product?.productId?.name}</Typography>
               </Grid>
               <Grid item xs={2}>
-                <Typography>Price: ${product?.price}</Typography>
+                <Typography>Price: ${product?.productId.price}</Typography>
               </Grid>
               <Grid item xs={2}>
-                <TextField
-                  type="number"
-                  label="Quantity"
-                  value={product?.quantity}
-                  InputProps={{
-                    inputProps: { min: 1 },
-                    endAdornment: (
-                      <Button size="small">
-                        <RemoveCircleOutlineIcon />
-                      </Button>
-                    ),
-                    startAdornment: (
-                      <Button size="small">
-                        <AddCircleOutlineIcon />
-                      </Button>
-                    ),
-                  }}
-                  onChange={(e) =>
-                    handleQuantityChange(
-                      product?.productId?._id,
-                      parseInt(e.target.value)
-                    )
+                <QuantityInput
+                  value={quantities[product?.productId?._id] || 1}
+                  onChange={(newValue: number) =>
+                    handleQuantityChange(product?.productId?._id, newValue)
                   }
                 />
               </Grid>

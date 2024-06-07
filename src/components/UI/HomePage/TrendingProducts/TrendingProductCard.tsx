@@ -28,6 +28,9 @@ const TrendingProductCard = (watch: any) => {
   const { _id, productImage, name, stock, price, regularPrice } =
     watch?.product;
 
+  const addToCart = (cart: any) => {
+    console.log(cart);
+  };
   return (
     <div>
       <Box>
@@ -144,7 +147,10 @@ const TrendingProductCard = (watch: any) => {
                 color: "white",
               }}
             >
-              <Button sx={{ fontSize: "12px", color: "white" }}>
+              <Button
+                onClick={() => addToCart(_id)}
+                sx={{ fontSize: "12px", color: "white" }}
+              >
                 <ShoppingCart sx={{ fontSize: "18px" }} />
                 Add to Cart
               </Button>

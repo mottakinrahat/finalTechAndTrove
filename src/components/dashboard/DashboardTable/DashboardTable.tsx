@@ -14,34 +14,21 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 
-interface Product {
-  _id: string;
-  imageUrl: string;
-  name: string;
-  brand: string;
-  price: number;
-  category: string;
-}
-
-interface DashboardTableProps {
-  watchData: Product[];
-}
-
-const DashboardTable: React.FC<DashboardTableProps> = ({ watchData = [] }) => {
-  const [products, setProducts] = useState<Product[]>([]);
+const DashboardTable: any = ({ watchData = [] }: any) => {
+  const [products, setProducts]: any = useState<any[]>([]);
 
   useEffect(() => {
     setProducts(watchData);
   }, [watchData]);
 
-  const handleUpdate = (id: string) => {
+  const handleUpdate: any = (id: any) => {
     // Mock update logic
     alert(`Update product with id: ${id}`);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete: any = (id: any) => {
     // Mock delete logic
-    setProducts(products.filter((product) => product._id !== id));
+    setProducts(products.filter((product: any) => product._id !== id));
     alert(`Deleted product with id: ${id}`);
   };
 
@@ -61,11 +48,11 @@ const DashboardTable: React.FC<DashboardTableProps> = ({ watchData = [] }) => {
           </TableHead>
           <TableBody>
             {products.length > 0 ? (
-              products.map((product) => (
+              products.map((product: any) => (
                 <TableRow key={product._id}>
                   <TableCell>
                     <Image
-                      src={product?.productImage[0].images as any}
+                      src={product?.productImage[0].images}
                       alt={product.name}
                       width={50}
                       height={50}
