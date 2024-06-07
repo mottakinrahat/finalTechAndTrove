@@ -3,12 +3,21 @@ import { baseApi } from "./baseApi";
 const smartWatchApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createSmartWatch: builder.mutation({
-      query: (data) => ({
+      query: (data : any) => {
+        // console.log("redux data",data);
+        return {
         url: "/smartwatch",
         method: "POST",
-        contentType: "multipart/form-data",
-        data,
+        body: data,
+      }
+    },
+    }),
+    deleteSmartWatch: builder.mutation({
+      query: (id) => ({
+        url: `/smartwatch/${id}`,
+        method: "DELETE",
       }),
+      invalidatesTags: ["smartwatch"],
     }),
     getSmartWatch: builder.query({
       query: () => ({
@@ -20,4 +29,4 @@ const smartWatchApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetSmartWatchQuery, useCreateSmartWatchMutation }=smartWatchApi;
+export const { useGetSmartWatchQuery, useCreateSmartWatchMutation, useDeleteSmartWatchMutation }=smartWatchApi;

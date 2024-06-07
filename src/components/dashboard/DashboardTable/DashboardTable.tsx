@@ -13,6 +13,8 @@ import {
   Box,
 } from "@mui/material";
 import Image from "next/image";
+import { useDeleteSmartWatchMutation } from "@/redux/api/smartWatchApi";
+import Swal from "sweetalert2";
 
 interface Product {
   _id: string;
@@ -29,6 +31,7 @@ interface DashboardTableProps {
 
 const DashboardTable: React.FC<DashboardTableProps> = ({ watchData = [] }) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [deleteSmartWatch] = useDeleteSmartWatchMutation();
 
   useEffect(() => {
     setProducts(watchData);
@@ -39,10 +42,27 @@ const DashboardTable: React.FC<DashboardTableProps> = ({ watchData = [] }) => {
     alert(`Update product with id: ${id}`);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     // Mock delete logic
-    setProducts(products.filter((product) => product._id !== id));
-    alert(`Deleted product with id: ${id}`);
+    try {
+      const response = await deleteSmartWatch(id).unwrap();
+      console.log(response);
+      
+      if (response.data._id) {
+        Swal.fire({
+          icon: "success",
+          title: "Product deleted successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        console.error("Failed to delete product.");
+      }
+      
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+    
   };
 
   return (
