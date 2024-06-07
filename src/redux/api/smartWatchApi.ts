@@ -17,7 +17,18 @@ const smartWatchApi = baseApi.injectEndpoints({
       }),
       providesTags: ["smartwatch"],
     }),
+    getSmartWatchWithReview: builder.query({
+      query: (id) => ({
+        url: `/smartwatch/${id}/reviews`,
+        method: "GET",
+      }),
+      providesTags: ["smartwatch"],
+    }),
   }),
 });
 
-export const { useGetSmartWatchQuery, useCreateSmartWatchMutation }=smartWatchApi;
+export const {
+  useGetSmartWatchQuery,
+  useGetSmartWatchWithReviewQuery,
+  useCreateSmartWatchMutation,
+} = smartWatchApi;

@@ -1,9 +1,8 @@
 "use client";
 import * as React from "react";
-import Title from "../../Title/Title";
 import Image from "next/image";
 import Card from "@mui/material/Card";
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import ButtonGroup from "@mui/material/ButtonGroup";
@@ -12,7 +11,7 @@ import ShopIcon from "@mui/icons-material/Shop";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Rating from "@mui/material/Rating";
 import Link from "next/link";
-
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 const buttons = [
   <Button key="one">
     <ShoppingCart />
@@ -26,7 +25,7 @@ const buttons = [
 ];
 const TrendingProductCard = (watch: any) => {
   const [value, setValue] = React.useState<number | null>(2);
-  const { _id, productImage, name, stock,price, regularPrice } =
+  const { _id, productImage, name, stock, price, regularPrice } =
     watch?.product;
 
   return (
@@ -91,7 +90,7 @@ const TrendingProductCard = (watch: any) => {
               </Typography>
             )}
             <Box>
-              <Typography fontSize={20} fontWeight="bold">
+              <Typography fontSize={16} fontWeight="bold">
                 {name}
               </Typography>
             </Box>
@@ -137,13 +136,22 @@ const TrendingProductCard = (watch: any) => {
               {watch?.name}
             </Typography>
 
-            <Box sx={{ display: "flex", gap: "4px" }}>
-              <Button sx={{ fontSize: "10px" }}>
-                <ShoppingCart />
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+                color: "white",
+              }}
+            >
+              <Button sx={{ fontSize: "12px", color: "white" }}>
+                <ShoppingCart sx={{ fontSize: "18px" }} />
                 Add to Cart
               </Button>
               <Link href={`/smartWatch/${_id}`}>
-                <Button sx={{ fontSize: "10px" }}>Details</Button>
+                <Button sx={{ fontSize: "12px", color: "white" }}>
+                  Details <ArrowForwardIcon sx={{ fontSize: "12px" }} />
+                </Button>
               </Link>
             </Box>
           </CardContent>
