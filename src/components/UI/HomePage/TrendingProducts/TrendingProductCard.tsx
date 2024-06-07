@@ -11,6 +11,7 @@ import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import ShopIcon from "@mui/icons-material/Shop";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Rating from "@mui/material/Rating";
+import Link from "next/link";
 
 const buttons = [
   <Button key="one">
@@ -25,7 +26,7 @@ const buttons = [
 ];
 const TrendingProductCard = (watch: any) => {
   const [value, setValue] = React.useState<number | null>(2);
-  const { productImage, name, stock, flashSale, price, regularPrice } =
+  const { _id, productImage, name, stock,price, regularPrice } =
     watch?.product;
 
   return (
@@ -136,10 +137,15 @@ const TrendingProductCard = (watch: any) => {
               {watch?.name}
             </Typography>
 
-            <Typography variant="body2" color="text.secondary">
-              High-definition webcam with 1080p resolution for crisp video
-              quality.
-            </Typography>
+            <Box sx={{ display: "flex", gap: "4px" }}>
+              <Button sx={{ fontSize: "10px" }}>
+                <ShoppingCart />
+                Add to Cart
+              </Button>
+              <Link href={`/smartWatch/${_id}`}>
+                <Button sx={{ fontSize: "10px" }}>Details</Button>
+              </Link>
+            </Box>
           </CardContent>
 
           <CardActions>
