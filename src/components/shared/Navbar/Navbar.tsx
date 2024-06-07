@@ -231,10 +231,10 @@ const Navbar = () => {
                 <Link href="/">Home</Link>
               </Typography>
               <Typography component="div">
-                <Link href="/buy">Buy</Link>
+                <Link href="/buy">All Products</Link>
               </Typography>
               <Typography component="div">
-                <Link href="/searchresult">Properties</Link>
+                <Link href="/searchresult">Terms & condition</Link>
               </Typography>
               <Typography component="div">
                 <Link href="/aboutus">About Us</Link>

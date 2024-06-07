@@ -1,4 +1,3 @@
-import { Drawer } from "@mui/material/Drawer";
 import { USER_ROLE } from "./../contants/role";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { SvgIconTypeMap } from "@mui/material";

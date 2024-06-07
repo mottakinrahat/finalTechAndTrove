@@ -40,7 +40,7 @@ const ImageSlider = () => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
-        <SwiperSlide key={image?._id}>
+        <SwiperSlide>
           <img src="" />
         </SwiperSlide>
       </Swiper>
