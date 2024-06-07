@@ -15,6 +15,7 @@ export const baseApi = createApi({
     "products",
     "category",
     "user",
-    "headphone"
+    "headphone",
+    "cart",
   ],
 });
