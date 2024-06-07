@@ -1,42 +1,87 @@
+"use client";
 import React from "react";
-import { Box, Paper } from "@mui/material";
-import { ShoppingCart } from "@mui/icons-material";
+import {
+  Box,
+  Paper,
+  Typography,
+  Button,
+  Grid,
+  TextField,
+  Container,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+
+import { useGetCartQuery } from "@/redux/api/cartApi";
 
 const CartPage: React.FC = () => {
+  const { data, isLoading } = useGetCartQuery(null);
+
+  const handleDelete = (productId: string) => {};
+
+  const handleQuantityChange = (productId: string, quantity: number) => {};
+
+  if (isLoading) {
+    return <>Loading...</>;
+  }
+
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="100vh"
-      sx={{ backgroundColor: "#F5F5F5", p: 2 }}
-    >
-      <Paper
-        elevation={3}
-        sx={{
-          width: { xs: "100%", sm: "75%", md: "60%", lg: "50%" },
-          p: 4,
-          backgroundColor: "#ffd978",
-          borderRadius: "16px",
-          boxShadow: 4,
-        }}
-      >
-        <Box display="flex" justifyContent="center">
+    <Container>
+      <Box sx={{ marginTop: "60px" }}>
+        {data?.data?.map((product: any, index: number) => (
           <Paper
-            elevation={3}
-            sx={{
-              width: "100%",
-              p: { xs: 2, sm: 4 },
-              backgroundColor: "#ffffff",
-              borderRadius: "16px",
-              boxShadow: 4,
-            }}
+            key={product?.productId?._id}
+            style={{ marginBottom: 10, padding: 10 }}
           >
-            <ShoppingCart />
+            <Grid container alignItems="center" spacing={2}>
+              <Grid item xs={6}>
+                <Typography>{product?.productId?.name}</Typography>
+              </Grid>
+              <Grid item xs={2}>
+                <Typography>Price: ${product?.price}</Typography>
+              </Grid>
+              <Grid item xs={2}>
+                <TextField
+                  type="number"
+                  label="Quantity"
+                  value={product?.quantity}
+                  InputProps={{
+                    inputProps: { min: 1 },
+                    endAdornment: (
+                      <Button size="small">
+                        <RemoveCircleOutlineIcon />
+                      </Button>
+                    ),
+                    startAdornment: (
+                      <Button size="small">
+                        <AddCircleOutlineIcon />
+                      </Button>
+                    ),
+                  }}
+                  onChange={(e) =>
+                    handleQuantityChange(
+                      product?.productId?._id,
+                      parseInt(e.target.value)
+                    )
+                  }
+                />
+              </Grid>
+              <Grid item xs={2}>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() => handleDelete(product?.productId?._id)}
+                  startIcon={<DeleteIcon />}
+                >
+                  Delete
+                </Button>
+              </Grid>
+            </Grid>
           </Paper>
-        </Box>
-      </Paper>
-    </Box>
+        ))}
+      </Box>
+    </Container>
   );
 };
 

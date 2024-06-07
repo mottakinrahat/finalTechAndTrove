@@ -65,8 +65,7 @@ const DashboardTable: React.FC<DashboardTableProps> = ({ watchData = [] }) => {
                 <TableRow key={product._id}>
                   <TableCell>
                     <Image
-                      src={product?.productImage[0]?
-                        .images}
+                      src={product?.productImage[0].images as any}
                       alt={product.name}
                       width={50}
                       height={50}
