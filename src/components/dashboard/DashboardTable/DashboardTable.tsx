@@ -16,28 +16,15 @@ import Image from "next/image";
 import { useDeleteSmartWatchMutation } from "@/redux/api/smartWatchApi";
 import Swal from "sweetalert2";
 
-interface Product {
-  _id: string;
-  imageUrl: string;
-  name: string;
-  brand: string;
-  price: number;
-  category: string;
-}
-
-interface DashboardTableProps {
-  watchData: Product[];
-}
-
-const DashboardTable: React.FC<DashboardTableProps> = ({ watchData = [] }) => {
-  const [products, setProducts] = useState<Product[]>([]);
+const DashboardTable: any = ({ watchData = [] }: any) => {
+  const [products, setProducts]: any = useState<any[]>([]);
   const [deleteSmartWatch] = useDeleteSmartWatchMutation();
 
   useEffect(() => {
     setProducts(watchData);
   }, [watchData]);
 
-  const handleUpdate = (id: string) => {
+  const handleUpdate: any = (id: any) => {
     // Mock update logic
     alert(`Update product with id: ${id}`);
   };
@@ -81,11 +68,11 @@ const DashboardTable: React.FC<DashboardTableProps> = ({ watchData = [] }) => {
           </TableHead>
           <TableBody>
             {products.length > 0 ? (
-              products.map((product) => (
+              products.map((product: any) => (
                 <TableRow key={product._id}>
                   <TableCell>
                     <Image
-                      src={product.imageUrl}
+                      src={product?.productImage[0].images}
                       alt={product.name}
                       width={50}
                       height={50}

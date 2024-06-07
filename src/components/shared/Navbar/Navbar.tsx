@@ -249,20 +249,22 @@ const Navbar = () => {
               paddingX="32px"
               display={{ xs: "none", sm: "hidden", md: "flex" }}
             >
-              <Typography
-                component="div"
-                sx={{
-                  backgroundColor: "#E7E7E7",
-                  borderRadius: "50px",
-                  padding: "6px",
-                }}
-              >
-                <IconButton aria-label="cart">
-                  <StyledBadge badgeContent={4} color="secondary">
-                    <ShoppingCartIcon fontSize="medium" />
-                  </StyledBadge>
-                </IconButton>
-              </Typography>
+              <Link href="/cart">
+                <Typography
+                  component="div"
+                  sx={{
+                    backgroundColor: "#E7E7E7",
+                    borderRadius: "50px",
+                    padding: "6px",
+                  }}
+                >
+                  <IconButton aria-label="cart">
+                    <StyledBadge badgeContent={1} color="secondary">
+                      <ShoppingCartIcon fontSize="medium" />
+                    </StyledBadge>
+                  </IconButton>
+                </Typography>
+              </Link>
               {user && (
                 <Typography
                   sx={{
