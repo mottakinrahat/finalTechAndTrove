@@ -72,6 +72,9 @@ const CartPage: React.FC = () => {
           </Paper>
         ))}
       </Box>
+      <Box sx={{ display: "flex", justifyContent: "end", padding: "20px" }}>
+        <Button>Check Out</Button>
+      </Box>
     </Container>
   );
 };

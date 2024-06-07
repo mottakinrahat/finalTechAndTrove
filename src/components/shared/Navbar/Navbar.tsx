@@ -259,7 +259,7 @@ const Navbar = () => {
                   }}
                 >
                   <IconButton aria-label="cart">
-                    <StyledBadge badgeContent={4} color="secondary">
+                    <StyledBadge badgeContent={1} color="secondary">
                       <ShoppingCartIcon fontSize="medium" />
                     </StyledBadge>
                   </IconButton>
